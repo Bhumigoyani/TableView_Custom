@@ -13,16 +13,18 @@ class ViewController: UIViewController {
     
     struct mycell{
         let title:String
+        let mark:String
+        let grade:String
         let imageName:String
         
     }
     
     let data: [mycell] = [
-        mycell(title: "Item1", imageName: "DemoImage"),
-        mycell(title: "Item2", imageName: "DemoImage"),
-        mycell(title: "Item3", imageName: "DemoImage"),
-        mycell(title: "Item4", imageName: "DemoImage"),
-        mycell(title: "Item5", imageName: "DemoImage"),
+        mycell(title: "Bhumi", mark: "10",grade: "A+", imageName: "student"),
+        mycell(title: "Nitesh",mark: "50",grade: "B+", imageName: "student"),
+        mycell(title: "Harshil", mark: "30",grade: "A", imageName: "student"),
+        mycell(title: "Shailee", mark: "34",grade: "A+", imageName: "student"),
+        mycell(title: "Ketul", mark: "50",grade: "A+++", imageName: "student")
     ]
     
     override func viewDidLoad() {
@@ -44,6 +46,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected \(data[indexPath.row].title)")
+        print("Selected \(data[indexPath.row].mark)")
+        print("Selected \(data[indexPath.row].grade)")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,12 +55,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         let cell = mytableview.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         cell.cellImage.image = UIImage(named: content.imageName)
         cell.cellLabel.text = content.title
+        cell.cellMarks.text = content.mark
+        cell.cellGrade.text = content.grade
         return cell
         
     }
     
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) -> CGFloat {
-      return 140
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
     }
 }
 
